@@ -44,12 +44,24 @@ uvicorn = "latest"
 
 [cerebrium.dependencies.apt]
 ffmpeg = "latest"
+libopenblas-base = "latest"
+libomp-dev = "latest"
 
 [cerebrium.dependencies.conda]
-# Optional conda dependencies
+cuda = ">=11.7"
+cudatoolkit = "11.7"
+opencv = "latest"
 
 [cerebrium.dependencies.paths]
 # Optional paths to dependency files
 # pip = "requirements.txt"
 # apt = "pkglist.txt"
 # conda = "conda_pkglist.txt"
+
+[cerebrium.deployment]
+shell_commands = [
+    # Initialize application resources
+    "python -m download_models",
+    "python -m compile_assets",
+    "python -m init_app"
+]
